@@ -15,33 +15,52 @@ void main() {
   );
 }
 
-class DicePage extends StatelessWidget {
+// just 'widget' part
+// class DicePage extends StatelessWidget {
+//   int leftDiceNumber = 1;
+//   int rightDiceNumber = 1;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Center(
+//       child: Row(
+//         children: <Widget>[
+//           Expanded(
+//             child: TextButton(
+//               onPressed: () {
+//                 print('Left button got pressed!');
+//               },
+//               child: Image.asset('images/dice$leftDiceNumber.png'),
+//             ),
+//           ),
+//           Expanded(
+//             child: TextButton(
+//               onPressed: () {
+//                 print('Right button got pressed!');
+//               },
+//               child: Image.asset('images/dice$rightDiceNumber.png'),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+// 'widget' part
+class DicePage extends StatefulWidget {
+  @override
+  _DicePageState createState() => _DicePageState();
+}
+
+// 'state' part
+// can chage - is mutable
+class _DicePageState extends State<DicePage> {
+  int leftDiceNumber = 1;
+  int rightDiceNumber = 2;
+
   @override
   Widget build(BuildContext context) {
-    // ensuring these vars are in the build method makes sure they get
-    // reinstantiated when the ui is re painted!
-    var leftDiceNumber = 1;
-    var rightDiceNumber = 2;
-
-    // remember dart is statically typed!
-    // String name = 'Lou';
-    // name = 5; //cannot reassign to another type
-    // ! ^^^ this will throw an error!
-
-    // what about just instantiation
-    // ! check this out!!!!
-    var a;
-    a = 123;
-    a = 'here is a string!!';
-    // ! when JUST instantiated, the variable is dynamically typed!
-    // the above code throws no errors!
-    // you can also use the dynamic keyword!
-    dynamic b;
-    b = 123;
-    b = 'here is another string!';
-
-    // in general though its best to type your variables in dart
-
     return Center(
       child: Row(
         children: <Widget>[
@@ -49,6 +68,9 @@ class DicePage extends StatelessWidget {
             child: TextButton(
               onPressed: () {
                 print('Left button got pressed!');
+                setState(() {
+                  leftDiceNumber = 6;
+                });
               },
               child: Image.asset('images/dice$leftDiceNumber.png'),
             ),
@@ -57,6 +79,9 @@ class DicePage extends StatelessWidget {
             child: TextButton(
               onPressed: () {
                 print('Right button got pressed!');
+                setState(() {
+                  rightDiceNumber = 5;
+                });
               },
               child: Image.asset('images/dice$rightDiceNumber.png'),
             ),
