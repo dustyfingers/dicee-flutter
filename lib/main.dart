@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,38 +16,6 @@ void main() {
   );
 }
 
-// just 'widget' part
-// class DicePage extends StatelessWidget {
-//   int leftDiceNumber = 1;
-//   int rightDiceNumber = 1;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(
-//       child: Row(
-//         children: <Widget>[
-//           Expanded(
-//             child: TextButton(
-//               onPressed: () {
-//                 print('Left button got pressed!');
-//               },
-//               child: Image.asset('images/dice$leftDiceNumber.png'),
-//             ),
-//           ),
-//           Expanded(
-//             child: TextButton(
-//               onPressed: () {
-//                 print('Right button got pressed!');
-//               },
-//               child: Image.asset('images/dice$rightDiceNumber.png'),
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
 // 'widget' part
 class DicePage extends StatefulWidget {
   @override
@@ -61,16 +30,23 @@ class _DicePageState extends State<DicePage> {
 
   @override
   Widget build(BuildContext context) {
+    void handleEitherDicePressed() {
+      setState(() {
+        leftDiceNumber = Random().nextInt(6) + 1;
+        rightDiceNumber = Random().nextInt(6) + 1;
+      });
+
+      print('Right number is $rightDiceNumber.');
+      print('Left number is $leftDiceNumber.');
+    }
+
     return Center(
       child: Row(
         children: <Widget>[
           Expanded(
             child: TextButton(
               onPressed: () {
-                print('Left button got pressed!');
-                setState(() {
-                  leftDiceNumber = 6;
-                });
+                handleEitherDicePressed();
               },
               child: Image.asset('images/dice$leftDiceNumber.png'),
             ),
@@ -78,10 +54,7 @@ class _DicePageState extends State<DicePage> {
           Expanded(
             child: TextButton(
               onPressed: () {
-                print('Right button got pressed!');
-                setState(() {
-                  rightDiceNumber = 5;
-                });
+                handleEitherDicePressed();
               },
               child: Image.asset('images/dice$rightDiceNumber.png'),
             ),
